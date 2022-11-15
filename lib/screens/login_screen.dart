@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:login_image/ui/input_decorations.dart';
 import 'package:login_image/widgets/widgets.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -30,7 +31,9 @@ class LoginScreen extends StatelessWidget {
               Text(
                 'Crear una nueva cuenta',
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              )
+              ),
+
+              SizedBox(height: 50),
             ],
           ),
         ),
@@ -51,28 +54,40 @@ class _LoginForm extends StatelessWidget {
             TextFormField(
               autocorrect: false,
               keyboardType: TextInputType.emailAddress,
-              decoration: InputDecoration(
-                enabledBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(
-                    color: Colors.purple,
-                  ),
-                ),
-                focusedBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(
-                    color: Colors.deepPurple,
-                    width: 2,
-                  ),
-                ),
-                hintText: 'ptm@sk.com.co',
+              decoration: InputDecorations.authInputDecoration(
+                hintText: 'correo@sk.com',
                 labelText: 'Correo electronico',
-                labelStyle: TextStyle(
-                  color: Colors.grey,
-                ),
-                prefixIcon: Icon(
-                  Icons.alternate_email_sharp,
-                  color: Colors.deepPurple,
+                prefixIcon: Icons.alternate_email_rounded,
+              ),
+            ),
+            SizedBox(height: 30),
+            TextFormField(
+              autocorrect: false,
+              obscureText: true,
+              keyboardType: TextInputType.number,
+              decoration: InputDecorations.authInputDecoration(
+                hintText: '******',
+                labelText: 'Contraseña',
+                prefixIcon: Icons.lock_outline,
+              ),
+            ),
+            SizedBox(height: 30),
+            MaterialButton(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10)),
+              disabledColor: Colors.grey,
+              elevation: 0,
+              color: Colors.deepPurple,
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 80, vertical: 15),
+                child: Text(
+                  'Ingresar',
+                  style: TextStyle(color: Colors.white),
                 ),
               ),
+              onPressed: () {
+                //TODO:LOGIN FORM
+              },
             ),
           ],
         ),
