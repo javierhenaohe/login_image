@@ -13,9 +13,11 @@ class MyApp extends StatelessWidget {
       title: 'Login PTM',
       initialRoute: 'login',
       routes: {
-        'login':(_) => LoginScreen(),
-        'home':(_) => HomeScreen(),
+        'login': (_) => LoginScreen(),
+        'home': (_) => HomeScreen(),
       },
+      theme:
+          ThemeData.light().copyWith(scaffoldBackgroundColor: Colors.grey[300]),
     );
   }
 }
