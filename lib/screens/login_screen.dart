@@ -106,15 +106,28 @@ class _LoginForm extends StatelessWidget {
               child: Container(
                 padding: EdgeInsets.symmetric(horizontal: 80, vertical: 15),
                 child: Text(
-                  'Ingresar',
+                  loginForm.isLoading ? 'Cargando...' : 'Ingresar',
                   style: TextStyle(color: Colors.white),
                 ),
               ),
-              onPressed: () {
-                //LOGIN FORM
-                if (!loginForm.isValidForm()) return;
-                Navigator.pushReplacementNamed(context, 'home');
-              },
+              onPressed: loginForm.isLoading // condicion que desactiva el boton
+                  ? null
+                  : () async {
+                      //LOGIN FORM
+
+                      FocusScope.of(context).unfocus();
+                      if (!loginForm.isValidForm()) return;
+
+                      loginForm.isLoading = true;
+
+                      await Future.delayed(Duration(seconds: 2));
+
+                      //TODO:VALIDAR SI EL LOGIN ES CORRECTO
+
+                      loginForm.isLoading = false;
+
+                      Navigator.pushReplacementNamed(context, 'home');
+                    },
             ),
           ],
         ),
