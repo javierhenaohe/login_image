@@ -120,7 +120,8 @@ class _LoginForm extends StatelessWidget {
 
                       loginForm.isLoading = true;
 
-                      await Future.delayed(Duration(seconds: 2));
+                      // activar esta pausa hace que el navigator genere advertencia
+                      // await Future.delayed(Duration(seconds: 2));
 
                       //TODO:VALIDAR SI EL LOGIN ES CORRECTO
 
