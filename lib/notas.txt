@@ -1,0 +1,2 @@
+//Para sacar el "." del teclado hay que ponerle la opción decimal:
+TextInputType.numberWithOptions(decimal: true)

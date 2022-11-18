@@ -18,7 +18,7 @@ class ProducImage extends StatelessWidget {
         child: ClipRRect(
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(45),
-            topRight: Radius.circular(45),
+            topRight: Radius.circular(45)
           ),
           child: FadeInImage(
             fit: BoxFit.cover,

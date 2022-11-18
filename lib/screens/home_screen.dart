@@ -13,7 +13,8 @@ class HomeScreen extends StatelessWidget {
         itemCount: 10,
         itemBuilder: (BuildContext context, int index) => GestureDetector(
           child: ProductCard(),
-          onTap: () => Navigator.pushNamed(context, 'product'),
+          onTap: () => Navigator.pushNamed(
+              context, 'product'), //enlace hacia creacion de imagenes
         ),
       ),
       floatingActionButton: FloatingActionButton(
