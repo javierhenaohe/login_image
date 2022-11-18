@@ -1,2 +1,6 @@
 //Para sacar el "." del teclado hay que ponerle la opción decimal:
 TextInputType.numberWithOptions(decimal: true)
+
+//reverti commits hasta el fin del video 222, 
+
+//el video: 223 no tenia codigo, solo se configuro firebase
