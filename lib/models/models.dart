@@ -1,0 +1,1 @@
+export 'package:login_image/models/product.dart';
