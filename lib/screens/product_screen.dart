@@ -12,7 +12,6 @@ class ProductScreen extends StatelessWidget {
           children: [
             Stack(
               children: [
-                C
                 ProducImage(),
                 Positioned(
                   top: 50,
@@ -47,7 +46,7 @@ class ProductScreen extends StatelessWidget {
           ],
         ),
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.save_outlined),
         onPressed: () {},
