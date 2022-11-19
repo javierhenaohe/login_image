@@ -114,7 +114,7 @@ class _ubTecnicaTag extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 10),
           child: Text(
             //TODO: al cambiar de double a string se puede quitar el signo $ y usar el formato PPTMXX00, TENER EN CUENTA QUE TAMBIEN SE DEBE CAMBIAR EN product.dart
-            ubTecnica, //'\$PPTMXXXX',
+            ubTecnica.toUpperCase(), //'\$PPTMXXXX',
             style: TextStyle(color: Colors.white, fontSize: 20),
           ),
         ),

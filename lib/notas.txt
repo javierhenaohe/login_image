@@ -7,3 +7,5 @@ el video: 223 no tenia codigo, solo se configuro firebase
 
 Fijate si tenes importada la libreria
 import 'dart:convert';
+
+EN PRODUCTSCREEN CAMBIAR EL TODO => VALIDATOR

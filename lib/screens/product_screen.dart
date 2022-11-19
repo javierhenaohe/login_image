@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:login_image/providers/product_form_provider.dart';
 import 'package:login_image/services/services.dart';
 import 'package:login_image/ui/input_decorations.dart';
 import 'package:provider/provider.dart';
@@ -9,6 +10,23 @@ class ProductScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final productService = Provider.of<ProductsService>(context);
+    return ChangeNotifierProvider(
+      create: (_) => ProductFromProvider(productService.selectedProduct),
+      child: _ProductScreenBody(productService: productService),
+    );
+  }
+}
+
+class _ProductScreenBody extends StatelessWidget {
+  const _ProductScreenBody({
+    Key? key,
+    required this.productService,
+  }) : super(key: key);
+
+  final ProductsService productService;
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -63,6 +81,10 @@ class _ProductForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final productForm = Provider.of<ProductFromProvider>(context);
+
+    final product = productForm.product;
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10),
       child: Container(
@@ -74,6 +96,12 @@ class _ProductForm extends StatelessWidget {
             children: [
               SizedBox(height: 10),
               TextFormField(
+                initialValue: product.name,
+                onChanged: (value) => product.name = value,
+                validator: (value) {
+                  if (value == null || value.length < 1)
+                    return 'La descripcion es obligatoria';
+                },
                 keyboardType: TextInputType.multiline,
                 decoration: InputDecorations.authInputDecoration(
                   labelText: 'Describa el Hallazgo',
@@ -82,7 +110,25 @@ class _ProductForm extends StatelessWidget {
               ),
               SizedBox(height: 20),
               TextFormField(
-                keyboardType: TextInputType.multiline,
+                initialValue: product.ubTecnica!
+                    .toUpperCase(), //+++permite poner texto en mayuscula+++
+                onChanged: (value) => product.ubTecnica = value,
+                validator: (value) {
+                  if (value == null || value.length < 1)
+                    return 'La UBICACION es obligatoria';
+                },
+                //TODO: validacion con expresion regular PPTMXX00
+                /*
+                validator: (value) {
+                  String pattern = r'^(pptm)\w{2}(\d{2})?\s?$';
+                  RegExp regExp = new RegExp(pattern);
+
+                  return regExp.hasMatch(value ?? '')
+                      ? null
+                      : 'No es formato de Ubicacion Tecnica';
+                },
+                */
+                keyboardType: TextInputType.name,
                 decoration: InputDecorations.authInputDecoration(
                   labelText: 'Ubicacion Tecnica',
                   hintText: 'PPTMXX00',
@@ -92,7 +138,7 @@ class _ProductForm extends StatelessWidget {
               SwitchListTile.adaptive(
                 activeColor: Colors.indigo,
                 inactiveTrackColor: Colors.red,
-                value: false,
+                value: product.available,
                 title: Text('Recordatorio Aviso SAP'),
                 onChanged: (value) {
                   //TODO: pendiente establecer
