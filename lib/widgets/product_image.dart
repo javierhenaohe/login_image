@@ -17,12 +17,10 @@ class ProducImage extends StatelessWidget {
         height: 450,
         child: ClipRRect(
           borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(45),
-            topRight: Radius.circular(45)
-          ),
+              topLeft: Radius.circular(45), topRight: Radius.circular(45)),
           child: FadeInImage(
-            fit: BoxFit.cover,
             placeholder: AssetImage('asset/jar-loading.gif'),
+            fit: BoxFit.cover,
             image: NetworkImage(
                 'https://via.placeholder.com/600x400/367ec2/101314.?text=javier.henao@outlook.com'),
           ),
