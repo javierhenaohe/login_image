@@ -10,6 +10,7 @@ class Product {
     required this.name,
     this.picture,
     required this.ubTecnica,
+    this.id,
   });
 
   bool available;
@@ -36,4 +37,12 @@ class Product {
         "picture": picture,
         "ubTecnica": ubTecnica,
       };
+
+  Product copy() => Product(
+        available: this.available,
+        name: this.name,
+        picture: this.picture,
+        ubTecnica: this.ubTecnica,
+        id: this.id,
+      );
 }

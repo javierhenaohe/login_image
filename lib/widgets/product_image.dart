@@ -3,6 +3,13 @@ import 'package:flutter/material.dart';
 class ProducImage extends StatelessWidget {
   //const ProducImage({super.key});
 
+  final String? url;
+
+  const ProducImage({
+    super.key,
+    this.url,
+  });
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -17,13 +24,19 @@ class ProducImage extends StatelessWidget {
         height: 450,
         child: ClipRRect(
           borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(45), topRight: Radius.circular(45)),
-          child: FadeInImage(
-            placeholder: AssetImage('asset/jar-loading.gif'),
-            fit: BoxFit.cover,
-            image: NetworkImage(
-                'https://via.placeholder.com/600x400/367ec2/101314.?text=javier.henao@outlook.com'),
+            topLeft: Radius.circular(45),
+            topRight: Radius.circular(45),
           ),
+          child: this.url == null
+              ? Image(
+                  image: AssetImage('assets/no-image.png'),
+                  fit: BoxFit.cover,
+                )
+              : FadeInImage(
+                  image: NetworkImage(this.url!),
+                  placeholder: AssetImage('asset/jar-loading.gif'),
+                  fit: BoxFit.cover,
+                ),
         ),
       ),
     );

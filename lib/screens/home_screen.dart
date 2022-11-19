@@ -19,12 +19,15 @@ class HomeScreen extends StatelessWidget {
       body: ListView.builder(
         itemCount: productsService.products.length,
         itemBuilder: (BuildContext context, int index) => GestureDetector(
-          child: ProductCard(
-            product: productsService.products[index],
-          ),
-          onTap: () => Navigator.pushNamed(
-              context, 'product'), //enlace hacia creacion de imagenes
-        ),
+            child: ProductCard(
+              product: productsService.products[index],
+            ),
+            onTap: () {
+              productsService.selectedProduct =
+                  productsService.products[index].copy();
+              Navigator.pushNamed(context, 'product');
+            } //enlace hacia creacion de imagenes
+            ),
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
