@@ -49,7 +49,7 @@ class ProductsService extends ChangeNotifier {
 
     if (product.id == null) {
       //es necesario crear
-
+      await this.createProduct(product);
     } else {
       //actualizar
       await this.upDateProduct(product);
@@ -61,8 +61,8 @@ class ProductsService extends ChangeNotifier {
 
   Future<String> upDateProduct(Product product) async {
     final url = Uri.https(_baseUrl, 'products/${product.id}.json');
-    final resp = await http.put(url,
-        body: product.toJson()); // put: actualiza base de datos
+    final resp = await http.put(url, body: product.toJson());
+    // put: actualiza base de datos
     final decodeData = resp.body;
 
     print(decodeData);
@@ -73,6 +73,19 @@ class ProductsService extends ChangeNotifier {
         this.products.indexWhere((element) => element.id == product.id);
 
     this.products[index] = product;
+    return product.id!;
+  }
+
+  Future<String> createProduct(Product product) async {
+    final url = Uri.https(_baseUrl, 'products.json');
+    final resp = await http.post(url, body: product.toJson());
+    // post: postea la informacion de la base de datos
+    final decodeData = json.decode(resp.body);
+
+    //print(decodeData);
+    product.id = decodeData['name'];
+
+    this.products.add(product);
     return product.id!;
   }
 }
