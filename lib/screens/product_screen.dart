@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:login_image/providers/product_form_provider.dart';
 import 'package:login_image/services/services.dart';
 import 'package:login_image/ui/input_decorations.dart';
@@ -29,6 +30,7 @@ class _ProductScreenBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
+        keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
         child: Column(
           children: [
             Stack(
@@ -110,24 +112,18 @@ class _ProductForm extends StatelessWidget {
               ),
               SizedBox(height: 20),
               TextFormField(
+                autocorrect: true,
                 initialValue: product.ubTecnica!
                     .toUpperCase(), //+++permite poner texto en mayuscula+++
+
+//TODO: validacion con expresion regular PPTMXX00, ORGANIZAR ESTA PARTE Y TOMAR COMOM EJEMPLO LO HECHO EL LOGIN
+
                 onChanged: (value) => product.ubTecnica = value,
                 validator: (value) {
                   if (value == null || value.length < 1)
-                    return 'La UBICACION es obligatoria';
+                    return 'La UBICACION TTECNICA es obligatoria';
                 },
-                //TODO: validacion con expresion regular PPTMXX00
-                /*
-                validator: (value) {
-                  String pattern = r'^(pptm)\w{2}(\d{2})?\s?$';
-                  RegExp regExp = new RegExp(pattern);
 
-                  return regExp.hasMatch(value ?? '')
-                      ? null
-                      : 'No es formato de Ubicacion Tecnica';
-                },
-                */
                 keyboardType: TextInputType.name,
                 decoration: InputDecorations.authInputDecoration(
                   labelText: 'Ubicacion Tecnica',
@@ -140,9 +136,7 @@ class _ProductForm extends StatelessWidget {
                 inactiveTrackColor: Colors.red,
                 value: product.available,
                 title: Text('Recordatorio Aviso SAP'),
-                onChanged: (value) {
-                  //TODO: pendiente establecer
-                },
+                onChanged: productForm.upDateAvailability,
               ),
             ],
           ),
@@ -164,3 +158,41 @@ class _ProductForm extends StatelessWidget {
                 blurRadius: 5),
           ]);
 }
+
+
+/* LOGIN
+onChanged: (value) => loginForm.email = value,
+              validator: (value) {
+                String pattern =
+                    r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+                RegExp regExp = new RegExp(pattern);
+
+                return regExp.hasMatch(value ?? '')
+                    ? null
+                    : 'El valor ingresado no luce como un correo';
+              },
+*/
+
+/* UBICACION TECNICA
+
+                validator: (value) {
+                  String pattern = r'^(pptm)\w{2}(\d{2})?\s?$';
+                  RegExp regExp = RegExp(pattern);
+
+                  return regExp.hasMatch(value ?? '')
+                      ? null
+                      : 'No es formato de Ubicacion Tecnica';
+                },
+
+                validator: (value) {
+                  if (value == null || value.length < 1)
+                    return 'La UBICACION es obligatoria';
+                },
+
+                inputFormatters: [
+                  FilteringTextInputFormatter.allow(
+                    RegExp(r'^(pptm)\w{2}(\d{2})?\s?$'),
+                  )
+                  //r'^(\d+)?\.?\d{0,2}'
+                ],
+*/
