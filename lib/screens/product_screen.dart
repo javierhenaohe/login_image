@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 //import 'package:flutter/services.dart';
 import 'package:login_image/providers/product_form_provider.dart';
+import 'package:login_image/screens/screens.dart';
 import 'package:login_image/services/services.dart';
 import 'package:login_image/ui/input_decorations.dart';
 import 'package:provider/provider.dart';
@@ -76,6 +77,7 @@ class _ProductScreenBody extends StatelessWidget {
         onPressed: () async {
           if (!productForm.isValidForm()) return;
           await productService.saveOrCreateProduct(productForm.product);
+          //Navigator.pop(context, 'home'); //implementacion para gusrdar y retornar a la pagina hallazgos
         },
       ),
     );
