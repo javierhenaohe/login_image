@@ -15,6 +15,9 @@ class ProductFromProvider extends ChangeNotifier {
   }
 
   bool isValidForm() {
+    print(product.name);
+    print(product.ubTecnica);
+    print(product.available);
     return formKey.currentState?.validate() ?? false;
   }
 }

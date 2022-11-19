@@ -75,8 +75,11 @@ class _NotAvailable extends StatelessWidget {
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 10),
           child: Text(
-            'Sin Aviso',
-            style: TextStyle(color: Colors.white, fontSize: 20),
+            'Falta Aviso',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 30,
+            ),
           ),
         ),
       ),

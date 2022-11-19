@@ -9,3 +9,6 @@ Fijate si tenes importada la libreria
 import 'dart:convert';
 
 EN PRODUCTSCREEN CAMBIAR EL TODO => VALIDATOR
+
+
+expresion regular para Ubicacion Tecnica: r'^(pptm)\w{2}(\d{2})?\s?$'

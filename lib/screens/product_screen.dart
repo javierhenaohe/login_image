@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+//import 'package:flutter/services.dart';
 import 'package:login_image/providers/product_form_provider.dart';
 import 'package:login_image/services/services.dart';
 import 'package:login_image/ui/input_decorations.dart';
@@ -28,6 +28,7 @@ class _ProductScreenBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final productForm = Provider.of<ProductFromProvider>(context);
     return Scaffold(
       body: SingleChildScrollView(
         keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
@@ -72,7 +73,10 @@ class _ProductScreenBody extends StatelessWidget {
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.save_outlined),
-        onPressed: () {},
+        onPressed: () async {
+          if (!productForm.isValidForm()) return;
+          await productService.saveOrCreateProduct(productForm.product);
+        },
       ),
     );
   }
@@ -94,17 +98,19 @@ class _ProductForm extends StatelessWidget {
         width: double.infinity,
         decoration: _builBoxDecoration(), //detalles de la decoracion
         child: Form(
+          key: productForm.formKey,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
           child: Column(
             children: [
-              SizedBox(height: 10),
+              SizedBox(height: 5),
               TextFormField(
+                //keyboardType: TextInputType.multiline,
                 initialValue: product.name,
                 onChanged: (value) => product.name = value,
                 validator: (value) {
-                  if (value == null || value.length < 1)
-                    return 'La descripcion es obligatoria';
+                  if (value == null || value.isEmpty)
+                    return 'Descripcion Breve Requerida';
                 },
-                keyboardType: TextInputType.multiline,
                 decoration: InputDecorations.authInputDecoration(
                   labelText: 'Describa el Hallazgo',
                   hintText: 'Describa brevemente el hallazgo',
@@ -113,15 +119,19 @@ class _ProductForm extends StatelessWidget {
               SizedBox(height: 20),
               TextFormField(
                 autocorrect: true,
-                initialValue: product.ubTecnica!
-                    .toUpperCase(), //+++permite poner texto en mayuscula+++
+                initialValue: product.ubTecnica,
+                // !.toUpperCase(), //+++permite poner texto en mayuscula+++
 
 //TODO: validacion con expresion regular PPTMXX00, ORGANIZAR ESTA PARTE Y TOMAR COMOM EJEMPLO LO HECHO EL LOGIN
 
                 onChanged: (value) => product.ubTecnica = value,
                 validator: (value) {
-                  if (value == null || value.length < 1)
-                    return 'La UBICACION TTECNICA es obligatoria';
+                  String pattern = r'^(PPTM)\w{2}(\d{2})?\s?$';
+                  RegExp regExp = RegExp(pattern);
+
+                  return regExp.hasMatch(value ?? '')
+                      ? null
+                      : 'Requiere Ubicacion Tecnica, Ej: PPTMXX00';
                 },
 
                 keyboardType: TextInputType.name,
@@ -186,7 +196,7 @@ onChanged: (value) => loginForm.email = value,
 
                 validator: (value) {
                   if (value == null || value.length < 1)
-                    return 'La UBICACION es obligatoria';
+                    return 'Ubicacion Tecnica Requerida';
                 },
 
                 inputFormatters: [
