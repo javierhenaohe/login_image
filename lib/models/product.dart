@@ -9,14 +9,14 @@ class Product {
     required this.available,
     required this.name,
     this.picture,
-    required this.price,
+    required this.ubTecnica,
   });
 
   bool available;
   String name;
   String? picture;
-  double
-      price; //este de debe cambiar a string para anexar el formato PPTMXXOO, CAMBIAR NOMBRE DE price a ubTecnica
+  String?
+      ubTecnica; //este de debe cambiar a string para anexar el formato PPTMXXOO, CAMBIAR NOMBRE DE ubTecnica a ubTecnica
   String? id;
 
   factory Product.fromJson(String str) => Product.fromMap(json.decode(str));
@@ -27,13 +27,13 @@ class Product {
         available: json["available"],
         name: json["name"],
         picture: json["picture"],
-        price: json["price"].toDouble(),
+        ubTecnica: json["ubTecnica"], //.toDouble(),
       );
 
   Map<String, dynamic> toMap() => {
         "available": available,
         "name": name,
         "picture": picture,
-        "price": price,
+        "ubTecnica": ubTecnica,
       };
 }

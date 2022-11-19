@@ -30,8 +30,8 @@ class ProductCard extends StatelessWidget {
             Positioned(
               top: 0,
               right: 0,
-              child: _PriceTag(
-                price: product.price,
+              child: _ubTecnicaTag(
+                ubTecnica: product.ubTecnica!,
               ), // muestra datos en esquina superior derecha
             ),
 
@@ -93,15 +93,15 @@ class _NotAvailable extends StatelessWidget {
   }
 }
 
-class _PriceTag extends StatelessWidget {
+class _ubTecnicaTag extends StatelessWidget {
   //const _PirceTag({Key? key,}) : super(key: key);
 
 //TODO: esta escrito como numero (double) para precio, cambiar para ubicacion tecnica (String)
-  final double price;
+  final String ubTecnica;
 
-  const _PriceTag({
+  const _ubTecnicaTag({
     super.key,
-    required this.price,
+    required this.ubTecnica,
   });
   @override
   Widget build(BuildContext context) {
@@ -114,7 +114,7 @@ class _PriceTag extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 10),
           child: Text(
             //TODO: al cambiar de double a string se puede quitar el signo $ y usar el formato PPTMXX00, TENER EN CUENTA QUE TAMBIEN SE DEBE CAMBIAR EN product.dart
-            '\$$price', //'\$PPTMXXXX',
+            ubTecnica, //'\$PPTMXXXX',
             style: TextStyle(color: Colors.white, fontSize: 20),
           ),
         ),
