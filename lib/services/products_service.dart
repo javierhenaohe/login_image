@@ -1,4 +1,6 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'package:login_image/models/models.dart';
 
 class ProductsService extends ChangeNotifier {
@@ -6,5 +8,28 @@ class ProductsService extends ChangeNotifier {
 
   final List<Product> products = [];
 
-  //TODO: Hacer el fecth de productos
+  bool isLoading = true;
+
+  ProductsService() {
+    this.loadProducts();
+  }
+
+  //TODO: <List<Product>>
+
+  Future loadProducts() async {
+    final url = Uri.https(_baseUrl, 'products.json');
+    final resp = await http.get(url);
+
+    final Map<String, dynamic> productMap = json.decode(resp.body);
+
+    //print(productMap);
+    productMap.forEach((key, value) {
+      final tempProduct = Product.fromMap(value);
+      tempProduct.id = key;
+      this.products.add(tempProduct);
+    });
+
+    final observarNombre = this.products[0].name;
+    print(observarNombre);
+  }
 }
