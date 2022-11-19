@@ -15,7 +15,8 @@ class Product {
   bool available;
   String name;
   String? picture;
-  double price;
+  double
+      price; //este de debe cambiar a string para anexar el formato PPTMXXOO, CAMBIAR NOMBRE DE price a ubTecnica
   String? id;
 
   factory Product.fromJson(String str) => Product.fromMap(json.decode(str));

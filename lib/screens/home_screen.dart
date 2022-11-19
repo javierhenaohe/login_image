@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:login_image/screens/screens.dart';
 import 'package:login_image/services/services.dart';
 import 'package:login_image/widgets/widgets.dart';
 import 'package:provider/provider.dart';
@@ -8,15 +9,19 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final productsService = Provider.of<ProductsService>(context);
 
+    if (productsService.isLoading) return LoadingScreen();
+
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         title: Text('Hallasgos PTM'),
       ),
       body: ListView.builder(
-        itemCount: 10,
+        itemCount: productsService.products.length,
         itemBuilder: (BuildContext context, int index) => GestureDetector(
-          child: ProductCard(),
+          child: ProductCard(
+            product: productsService.products[index],
+          ),
           onTap: () => Navigator.pushNamed(
               context, 'product'), //enlace hacia creacion de imagenes
         ),
