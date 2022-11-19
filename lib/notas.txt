@@ -10,5 +10,6 @@ import 'dart:convert';
 
 EN PRODUCTSCREEN CAMBIAR EL TODO => VALIDATOR
 
-
 expresion regular para Ubicacion Tecnica: r'^(pptm)\w{2}(\d{2})?\s?$'
+
+se reviso v235 y v236, cloudynary imagenes y paquete imagen, se inicia  v237
