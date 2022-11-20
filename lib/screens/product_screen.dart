@@ -69,7 +69,8 @@ class _ProductScreenBody extends StatelessWidget {
                         print('No seleccionó nada');
                         return;
                       }
-                      return print('Tenemos Imagen ${pickedFile.path}');
+                      print('Tenemos Imagen ${pickedFile.path}');
+                      productService.upDateSeletedProductImage(pickedFile.path);
                     },
                     icon: Icon(
                       Icons.camera_alt_outlined,
