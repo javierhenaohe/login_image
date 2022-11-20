@@ -37,6 +37,8 @@ class _HeaderIcon extends StatelessWidget {
         width: double.infinity,
         margin: EdgeInsets.only(top: 30),
         child: Icon(Icons.person_pin, color: Colors.white, size: 100),
+        //TODO: implemetar imagen sk, cambiar icono
+        //child: Image(image: AssetImage('assets/skc.png')),
       ),
     );
   }

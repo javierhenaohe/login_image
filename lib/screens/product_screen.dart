@@ -1,4 +1,4 @@
-import 'dart:ffi';
+//import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 //import 'package:flutter/services.dart';
@@ -93,8 +93,8 @@ class _ProductScreenBody extends StatelessWidget {
         child: productService.isSaving
             ? CircularProgressIndicator.adaptive()
             : Icon(Icons.save_outlined),
-            //Implementacion para quitar espera en el boton de guardar
-         //child: Icon(Icons.save_outlined),   
+        //Implementacion para quitar espera en el boton de guardar
+        //child: Icon(Icons.save_outlined),
         onPressed: productService.isSaving
             ? null
             : () async {
@@ -103,7 +103,8 @@ class _ProductScreenBody extends StatelessWidget {
 
                 if (imageUrl != null) productForm.product.picture = imageUrl;
                 await productService.saveOrCreateProduct(productForm.product);
-                Navigator.pop(context, 'home'); //TODO: implementacion para guardar y retornar a la pagina hallazgos
+                //Navigator.pop(context, 'home');
+                //TODO: implementacion para guardar y retornar a la pagina hallazgos
               },
       ),
     );
@@ -196,7 +197,6 @@ class _ProductForm extends StatelessWidget {
                 blurRadius: 5),
           ]);
 }
-
 
 /* LOGIN
 onChanged: (value) => loginForm.email = value,
