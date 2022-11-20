@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 //import 'package:flutter/services.dart';
 import 'package:login_image/providers/product_form_provider.dart';
@@ -88,16 +90,19 @@ class _ProductScreenBody extends StatelessWidget {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.save_outlined),
-        onPressed: () async {
-          if (!productForm.isValidForm()) return;
-          final String? imageUrl = await productService.uploadImage();
+        child: productService.isSaving
+            ? CircularProgressIndicator.adaptive()
+            : Icon(Icons.save_outlined),
+        onPressed: productService.isSaving
+            ? null
+            : () async {
+                if (!productForm.isValidForm()) return;
+                final String? imageUrl = await productService.uploadImage();
 
-          print(imageUrl);
-
-          await productService.saveOrCreateProduct(productForm.product);
-          //Navigator.pop(context, 'home'); //TODO: implementacion para guardar y retornar a la pagina hallazgos
-        },
+                if (imageUrl != null) productForm.product.picture = imageUrl;
+                await productService.saveOrCreateProduct(productForm.product);
+                //Navigator.pop(context, 'home'); //TODO: implementacion para guardar y retornar a la pagina hallazgos
+              },
       ),
     );
   }
