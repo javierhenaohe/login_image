@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 //import 'package:flutter/services.dart';
 import 'package:login_image/providers/product_form_provider.dart';
-import 'package:login_image/screens/screens.dart';
+//import 'package:login_image/screens/screens.dart';
 import 'package:login_image/services/services.dart';
 import 'package:login_image/ui/input_decorations.dart';
 import 'package:provider/provider.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../widgets/widgets.dart';
 
@@ -54,8 +55,21 @@ class _ProductScreenBody extends StatelessWidget {
                   top: 50,
                   right: 20,
                   child: IconButton(
-                    onPressed: () {
+                    onPressed: () async {
                       //TODO: camara o galeria
+
+                      final picker = new ImagePicker();
+                      final XFile? pickedFile = await picker.pickImage(
+                        imageQuality: 100,
+                        source: ImageSource.camera,
+                        //source: ImageSource.gallery,
+                      );
+
+                      if (pickedFile == null) {
+                        print('No seleccionó nada');
+                        return;
+                      }
+                      return print('Tenemos Imagen ${pickedFile.path}');
                     },
                     icon: Icon(
                       Icons.camera_alt_outlined,
@@ -124,7 +138,7 @@ class _ProductForm extends StatelessWidget {
                 initialValue: product.ubTecnica,
                 // !.toUpperCase(), //+++permite poner texto en mayuscula+++
 
-//TODO: validacion con expresion regular PPTMXX00, ORGANIZAR ESTA PARTE Y TOMAR COMOM EJEMPLO LO HECHO EL LOGIN
+                //TODO: validacion con expresion regular PPTMXX00, ORGANIZAR ESTA PARTE Y TOMAR COMOM EJEMPLO LO HECHO EL LOGIN
 
                 onChanged: (value) => product.ubTecnica = value,
                 validator: (value) {
