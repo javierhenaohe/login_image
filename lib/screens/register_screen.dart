@@ -4,7 +4,7 @@ import 'package:login_image/ui/input_decorations.dart';
 import 'package:login_image/widgets/widgets.dart';
 import 'package:provider/provider.dart';
 
-class LoginScreen extends StatelessWidget {
+class RegisterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,7 +20,7 @@ class LoginScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     SizedBox(height: 10),
-                    Text('Usuario PTM',
+                    Text('Crear usuario PTM',
                         style: Theme.of(context).textTheme.headline4),
                     SizedBox(height: 30),
 
@@ -37,14 +37,14 @@ class LoginScreen extends StatelessWidget {
 
               TextButton(
                 onPressed: () =>
-                    Navigator.pushReplacementNamed(context, 'register'),
+                    Navigator.pushReplacementNamed(context, 'login'),
                 style: ButtonStyle(
                   overlayColor:
                       MaterialStateProperty.all(Colors.indigo.withOpacity(0.1)),
                   shape: MaterialStateProperty.all(const StadiumBorder()),
                 ),
                 child: Text(
-                  'Crear una nueva cuenta',
+                  'Ingresa con tu cuenta',
                   style: TextStyle(
                       fontSize: 18,
                       //fontWeight: FontWeight.bold,
@@ -139,7 +139,7 @@ class _LoginForm extends StatelessWidget {
 
                       loginForm.isLoading = false;
 
-                      Navigator.pushReplacementNamed(context, 'home');
+                      Navigator.pushReplacementNamed(context, 'login');
                     },
             ),
           ],
