@@ -103,7 +103,7 @@ class _ProductScreenBody extends StatelessWidget {
 
                 if (imageUrl != null) productForm.product.picture = imageUrl;
                 await productService.saveOrCreateProduct(productForm.product);
-                //Navigator.pop(context, 'home');
+                Navigator.pop(context, 'home');
                 //TODO: implementacion para guardar y retornar a la pagina hallazgos
               },
       ),
