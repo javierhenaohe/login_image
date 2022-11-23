@@ -64,7 +64,7 @@ class AuthService extends ChangeNotifier {
     }
   }
 
-  // BORRA TOKEN
+  // BORRA TOKEN y sirve para cerrar seccion
   Future logout() async {
     await storage.delete(key: 'token');
 
