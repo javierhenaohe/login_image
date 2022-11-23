@@ -126,7 +126,7 @@ class _LoginForm extends StatelessWidget {
               onPressed: loginForm.isLoading // condicion que desactiva el boton
                   ? null
                   : () async {
-                      //LOGIN FORM
+                      //REGISTER FORM
 
                       FocusScope.of(context).unfocus();
 
