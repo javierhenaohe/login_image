@@ -64,9 +64,15 @@ class AuthService extends ChangeNotifier {
     }
   }
 
+  // BORRA TOKEN
   Future logout() async {
     await storage.delete(key: 'token');
 
     return;
+  }
+
+  //VERIFICA SI EXISTE TOKEN
+  Future<String> readToken() async {
+    return await storage.read(key: 'token') ?? '';
   }
 }
