@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:login_image/providers/login_form_provider.dart';
+import 'package:login_image/services/services.dart';
 import 'package:login_image/ui/input_decorations.dart';
 import 'package:login_image/widgets/widgets.dart';
 import 'package:provider/provider.dart';
@@ -128,18 +129,32 @@ class _LoginForm extends StatelessWidget {
                       //LOGIN FORM
 
                       FocusScope.of(context).unfocus();
+
+                      final authService =
+                          Provider.of<AuthService>(context, listen: false);
+
                       if (!loginForm.isValidForm()) return;
 
                       loginForm.isLoading = true;
 
-                      // activar esta pausa hace que el navigator genere advertencia
-                      // await Future.delayed(Duration(seconds: 2));
-
                       //TODO:VALIDAR SI EL LOGIN ES CORRECTO
+
+                      final String? errorMessage = await authService.createUser(
+                          loginForm.email, loginForm.password);
+
+                      if (errorMessage == null) {
+                        Navigator.pushReplacementNamed(context, 'login');
+                      } else {
+                        //TODO: mostrar error en pantalla
+
+                        print(errorMessage);
+                      }
 
                       loginForm.isLoading = false;
 
-                      Navigator.pushReplacementNamed(context, 'login');
+                      // activar esta pausa hace que el navigator genere advertencia
+                      // await Future.delayed(Duration(seconds: 2));
+                      //loginForm.isLoading = false;
                     },
             ),
           ],
