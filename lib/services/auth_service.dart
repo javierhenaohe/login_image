@@ -1,11 +1,14 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 
 class AuthService extends ChangeNotifier {
   final String _baseUrl = 'identitytoolkit.googleapis.com';
   final String _firebaseToken = 'AIzaSyD-GHd3W-9aOG7FL922reEs13qNMkciaGo';
+
+  final storage = new FlutterSecureStorage();
 
 // REGISTER USUARIO
 // Si retona algo es un error, de lo contrario va bien
@@ -24,6 +27,8 @@ class AuthService extends ChangeNotifier {
 
     if (decodeResp.containsKey('idToken')) {
       // Token: hay que guardarlo en un lugar seguro
+
+      await storage.write(key: 'token', value: decodeResp['idToken']);
 
       return null;
       //decodeResp['idToken'];
@@ -50,10 +55,18 @@ class AuthService extends ChangeNotifier {
     if (decodeResp.containsKey('idToken')) {
       // Token: hay que guardarlo en un lugar seguro
 
+      await storage.write(key: 'token', value: decodeResp['idToken']);
+
       return null;
       //decodeResp['idToken'];
     } else {
       return decodeResp['error']['message'];
     }
+  }
+
+  Future logout() async {
+    await storage.delete(key: 'token');
+
+    return;
   }
 }
