@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:login_image/screens/screens.dart';
 import 'package:login_image/services/services.dart';
 import 'package:provider/provider.dart';
 
@@ -30,11 +31,31 @@ class CheckAuthScreen extends StatelessWidget {
               ),
             );
 
-          //if (snapshot.data == '') {}
-
-          Future.microtask(() {
-            Navigator.of(context).pushReplacementNamed('login');
-          });
+          if (snapshot.data == '') {
+            Future.microtask(
+              () {
+                Navigator.pushReplacement(
+                  context,
+                  PageRouteBuilder(
+                    pageBuilder: (_, __, ___) => LoginScreen(),
+                    transitionDuration: Duration(seconds: 0),
+                  ),
+                );
+              },
+            );
+          } else {
+            Future.microtask(
+              () {
+                Navigator.pushReplacement(
+                  context,
+                  PageRouteBuilder(
+                    pageBuilder: (_, __, ___) => HomeScreen(),
+                    transitionDuration: Duration(seconds: 0),
+                  ),
+                );
+              },
+            );
+          }
 
           return Container();
         },
