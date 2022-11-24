@@ -148,10 +148,9 @@ class _LoginForm extends StatelessWidget {
                         //TODO: mostrar error en pantalla
 
                         print(errorMessage);
+                        NotificationsService.showSnackBar(errorMessage);
                       }
-
                       loginForm.isLoading = false;
-
                       // activar esta pausa hace que el navigator genere advertencia
                       // await Future.delayed(Duration(seconds: 2));
                       //loginForm.isLoading = false;
