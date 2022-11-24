@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Login PTM',
-      initialRoute: 'checking',
+      initialRoute: 'login',
       routes: {
         'login': (_) => LoginScreen(),
         'home': (_) => HomeScreen(),
@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
         'register': (_) => RegisterScreen(),
         'checking': (_) => CheckAuthScreen(),
       },
-      scaffoldMessengerKey:NotificationsService.messengerKey,
+      scaffoldMessengerKey: NotificationsService.messengerKey,
       theme: ThemeData.light().copyWith(
         scaffoldBackgroundColor: Colors.grey[300],
         appBarTheme: AppBarTheme(elevation: 0, color: Colors.indigo),
