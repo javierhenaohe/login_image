@@ -125,7 +125,7 @@ class _ubTecnicaTag extends StatelessWidget {
       width: 100,
       height: 70,
       decoration: BoxDecoration(
-        color: Colors.indigo,
+        color: Colors.blue,
         borderRadius: BorderRadius.only(
           topRight: Radius.circular(25),
           bottomLeft: Radius.circular(25),
@@ -183,7 +183,7 @@ class _ProducDetails extends StatelessWidget {
   }
 
   BoxDecoration _buildBoxDecoration() => BoxDecoration(
-        color: Colors.indigo,
+        color: Colors.blue,
         borderRadius: BorderRadius.only(
             topRight: Radius.circular(25), bottomLeft: Radius.circular(25)),
       );

@@ -32,6 +32,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter:
     sdk: flutter
+  
   flutter_secure_storage: ^6.0.0
   http: ^0.13.5
   image_picker: ^0.8.6
@@ -41,6 +42,26 @@ dev_dependencies:
   flutter_lints: ^2.0.0
   flutter_test:
     sdk: flutter
+  flutter_launcher_icons: ^0.11.0
+
+flutter_icons: 
+  android: "launcher_icon" 
+  ios: true 
+  image_path: "assets/icon/sk-icon.png" 
+  adaptive_icon_background: "assets/icon/sk-icon.png"
+  //min_sdk_android: 21 //# android min sdk min:16, default 21**********
+  web:
+    generate: true
+    image_path: "assets/icon/sk-icon.png"
+    background_color: "#hexcode"
+    theme_color: "#hexcode"
+  windows:
+    generate: true
+    image_path: "assets/icon/sk-icon.png"
+    icon_size: 48 # min:48, max:256, default: 48
+  macos:
+    generate: true
+    image_path: "assets/icon/sk-icon.png"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

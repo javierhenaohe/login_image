@@ -36,7 +36,7 @@ class _HeaderIcon extends StatelessWidget {
       child: Container(
         width: double.infinity,
         margin: EdgeInsets.only(top: 30),
-        child: Icon(Icons.person_pin, color: Colors.white, size: 100),
+        child: Icon(Icons.forest_outlined, color: Colors.white, size: 100),
         //TODO: implemetar imagen sk, cambiar icono
         //child: Image(image: AssetImage('assets/skc.png')),
       ),
@@ -73,8 +73,8 @@ class _PurpleBox extends StatelessWidget {
   BoxDecoration _purpleBackground() => BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            Color.fromRGBO(63, 63, 156, 1),
-            Color.fromRGBO(90, 70, 178, 1),
+            Color.fromARGB(255, 15, 90, 202),
+            Color.fromARGB(255, 86, 136, 166),
           ],
         ),
       );

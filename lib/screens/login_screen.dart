@@ -20,7 +20,7 @@ class LoginScreen extends StatelessWidget {
               CardContainer(
                 child: Column(
                   children: [
-                    SizedBox(height: 10),
+                    SizedBox(height: 20),
                     Text('Usuario PTM',
                         style: Theme.of(context).textTheme.headline4),
                     SizedBox(height: 30),
@@ -41,7 +41,7 @@ class LoginScreen extends StatelessWidget {
                     Navigator.pushReplacementNamed(context, 'register'),
                 style: ButtonStyle(
                   overlayColor:
-                      MaterialStateProperty.all(Colors.indigo.withOpacity(0.1)),
+                      MaterialStateProperty.all(Colors.blue.withOpacity(0.1)),
                   shape: MaterialStateProperty.all(const StadiumBorder()),
                 ),
                 child: Text(
@@ -115,7 +115,7 @@ class _LoginForm extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10)),
               disabledColor: Colors.grey,
               elevation: 0,
-              color: Colors.deepPurple,
+              color: Colors.blue,
               child: Container(
                 padding: EdgeInsets.symmetric(horizontal: 80, vertical: 15),
                 child: Text(

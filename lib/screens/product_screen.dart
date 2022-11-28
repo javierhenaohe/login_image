@@ -171,8 +171,8 @@ class _ProductForm extends StatelessWidget {
               ),
               SizedBox(height: 20),
               SwitchListTile.adaptive(
-                activeColor: Colors.indigo,
-                inactiveTrackColor: Colors.red,
+                activeColor: Colors.red,
+                inactiveTrackColor: Colors.blue,
                 value: product.available,
                 title: Text('Recordatorio Aviso SAP'),
                 onChanged: productForm.upDateAvailability,
